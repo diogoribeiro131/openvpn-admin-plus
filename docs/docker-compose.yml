@@ -28,5 +28,3 @@ services:
      - "8443:8443/tcp"
     restart: always
     volumes:
-     - /etc/openvpn:/etc/openvpn
-     - ./openvpn-data/db:/opt/openvpn-gui-tap/db
