@@ -2,31 +2,32 @@ version: "3"
 services:
   gui:
     image: bnhf/openvpn-admin-plus:latest
-    container_name: openvpn-admin-plus
     logging:
       driver: "json-file"
       options:
         max-size: "100k"
     environment:
-    - OPENVPN_ADMIN_USERNAME=admin # Leave this default as-is and update on first-run
-    - OPENVPN_ADMIN_PASSWORD=b3secure # Leave this default as-is and update on first-run
-    - COUNTRY=${COUNTRY} # Country, Province, City, Org and OU are used by EasyRSA
-    - PROVINCE=${PROVINCE} # Province or State
-    - CITY=${CITY}
-    - ORG=${ORG} # Organization - Use your company name here or make one up
-    - EMAIL=${EMAIL}
-    - OU=${OU} # Organizational Unit - Use your company department name or make one up
-    - PIVPN_SERVER=${PIVPN_SERVER} # The unique name used for your server's certificate and key. Found in the /etc/openvpn/server.conf file.
-    - PIVPN_CONF=${PIVPN_CONF} # Filename for your OpenVPN server configuration - usually server.conf
-    - TZ=${TZ} # Your OpenVPN server's timezone
-    - ENABLEHTTPS=${ENABLEHTTPS} # Enable HTTPS protocol
-    - HTTPSPORT=${HTTPSPORT} # Specify the HTTPS port number
-    - HTTPSCERT=${HTTPSCERT} # The path to the SSL-certificate (for example: /etc/openvpn/server/ssl/openvpn-server.crt)
-    - HTTPSKEY=${HTTPSKEY} # The path to the private key (for example: /etc/openvpn/server/ssl/openvpn-server.key)
+      - OPENVPN_ADMIN_USERNAME=admin
+      - OPENVPN_ADMIN_PASSWORD=b3secure
+      - COUNTRY=${COUNTRY}
+      - PROVINCE=${PROVINCE}
+      - CITY=${CITY}
+      - ORG=${ORG}
+      - EMAIL=${EMAIL}
+      - OU=${OU}
+      - PIVPN_SERVER=${PIVPN_SERVER}
+      - PIVPN_CONF=${PIVPN_CONF}
+      - TZ=${TZ}
+      - ENABLEHTTPS=${ENABLEHTTPS}
+      - HTTPSPORT=${HTTPSPORT}
+      - HTTPSCERT=${HTTPSCERT}
+      - HTTPSKEY=${HTTPSKEY}
     ports:
-     - "8080:8080/tcp"
-     - "8443:8443/tcp"
-    restart: always
+      - "8080:8080/tcp"
+      - "8443:8443/tcp"
     volumes:
       - vpn:/etc/openvpn
       - vpn:/opt/openvpn-gui-tap/db
+
+volumes:
+  vpn:
